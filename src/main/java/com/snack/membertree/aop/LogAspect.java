@@ -1,14 +1,11 @@
 package com.snack.membertree.aop;
 
 import lombok.extern.slf4j.Slf4j;
-import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
-
-import java.lang.reflect.Method;
 
 @Component
 @Aspect
@@ -20,27 +17,18 @@ public class LogAspect {
     }
 
     @Around("logPointcut()")
-    public void around(JoinPoint point) {
-        String methodName = point.getSignature().getName();
-        Object[] args = point.getArgs();
-        Class<?>[] argTypes = new Class[point.getArgs().length];
-        for (int i = 0; i < args.length; i++) {
-            argTypes[i] = args[i].getClass();
-        }
-        Method method = null;
-        try {
-            method = point.getTarget().getClass().getMethod(methodName, argTypes);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public Object around(ProceedingJoinPoint point) {
         long start = System.currentTimeMillis();
+        Object object = null;
         try {
-            ((ProceedingJoinPoint) point).proceed();
-        } catch (Throwable throwable) {
-            throwable.printStackTrace();
-        } finally {
+            object = point.proceed();
+        } catch (Throwable e) {
+            e.printStackTrace();
+        }finally {
+            String methodName = point.getSignature().getName();
             long end = System.currentTimeMillis();
-            log.info("the method [{}] invoke takes {}ms", method.getName(), (end - start));
+            log.info("the method [{}] invoke takes {}ms", methodName, (end - start));
+            return object;
         }
-    }
+     }
 }

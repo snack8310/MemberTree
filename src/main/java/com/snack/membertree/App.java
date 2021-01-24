@@ -1,5 +1,6 @@
 package com.snack.membertree;
 
+import com.snack.membertree.controller.NodeController;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;

@@ -1,4 +1,4 @@
-package com.snack.membertree;
+package com.snack.membertree.controller;
 
 import com.snack.membertree.service.Node;
 import com.snack.membertree.service.NodeService;

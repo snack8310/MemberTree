@@ -1,2 +1,24 @@
 # Default ignored files
 /workspace.xml
+/compiler.xml
+/encodings.xml
+/libraries/Maven__aopalliance_aopalliance_1_0.xml
+/libraries/Maven__commons_logging_commons_logging_1_2.xml
+/libraries/Maven__junit_junit_4_11.xml
+/libraries/Maven__log4j_log4j_1_2_17.xml
+/libraries/Maven__org_aspectj_aspectjrt_1_6_11.xml
+/libraries/Maven__org_aspectj_aspectjweaver_1_6_11.xml
+/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml
+/libraries/Maven__org_projectlombok_lombok_1_16_10.xml
+/libraries/Maven__org_slf4j_slf4j_api_1_7_25.xml
+/libraries/Maven__org_slf4j_slf4j_log4j12_1_7_25.xml
+/libraries/Maven__org_springframework_spring_aop_4_1_3_RELEASE.xml
+/libraries/Maven__org_springframework_spring_beans_4_1_3_RELEASE.xml
+/libraries/Maven__org_springframework_spring_context_4_1_3_RELEASE.xml
+/libraries/Maven__org_springframework_spring_core_4_1_3_RELEASE.xml
+/libraries/Maven__org_springframework_spring_expression_4_1_3_RELEASE.xml
+/MemberTree.iml
+/misc.xml
+/modules.xml
+/inspectionProfiles/Project_Default.xml
+/uiDesigner.xml
