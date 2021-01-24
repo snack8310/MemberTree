@@ -17,9 +17,6 @@ public class App {
     public static void main(String[] args) {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(App.class);
         NodeController nc = context.getBean(NodeController.class);
-//        ns target = new nsImpl();
-//        Aop aop = new Aop(target);
-//        ns ns = (ns) Proxy.newProxyInstance(target.getClass().getClassLoader(), target.getClass().getInterfaces(), aop);
         nc.createNewTree();
     }
 
