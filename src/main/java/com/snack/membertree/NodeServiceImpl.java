@@ -15,7 +15,6 @@ public class NodeServiceImpl implements NodeService {
     @Override
     public Node add(Node parent, Node left, String title) {
 
-        log.info("add" + START);
         int nl = parent.getLeft();
         int index = nodes.indexOf(parent) + 1;
         if (left != null) {
@@ -32,13 +31,11 @@ public class NodeServiceImpl implements NodeService {
             }
         }
         nodes.add(index, newNode);
-        log.info("add" + END);
         return newNode;
     }
 
     @Override
     public void remove(Node removeNode) {
-        log.info("remove" + START);
         int nl = removeNode.getLeft();
         int nr = removeNode.getRight();
         for (Node node : nodes) {
@@ -54,7 +51,6 @@ public class NodeServiceImpl implements NodeService {
             }
         }
         nodes.remove(removeNode);
-        log.info("remove" + END);
         return;
     }
 
@@ -72,7 +68,6 @@ public class NodeServiceImpl implements NodeService {
 
     @Override
     public List<Node> getChildren(Node currentNode) {
-        log.info("getChildren" + START);
         List<Node> children = new LinkedList<>();
         int nl = currentNode.getLeft();
         int nr = currentNode.getRight();
@@ -81,13 +76,11 @@ public class NodeServiceImpl implements NodeService {
                 children.add(node);
             }
         }
-        log.info("getChildren" + END);
         return children;
     }
 
     @Override
     public List<Node> getOneLevelChildren(Node currentNode) {
-        log.info("getOneLevelChildren" + START);
         List<Node> children = new LinkedList<>();
         int nl = currentNode.getLeft();
         int nr = currentNode.getRight();
@@ -102,7 +95,6 @@ public class NodeServiceImpl implements NodeService {
             leftChild = node;
             children.add(leftChild);
         }
-        log.info("getOneLevelChildren" + END);
         return children;
     }
 }

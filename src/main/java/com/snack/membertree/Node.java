@@ -14,7 +14,7 @@ public class Node {
         this.title = title;
     }
 
-    public void print(){
+    public void print() {
         System.out.println("title:" + this.getTitle() + ";left:" + this.getLeft() + "；right:" + this.getRight());
     }
 }
