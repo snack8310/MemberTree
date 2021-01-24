@@ -7,7 +7,7 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 
 @Slf4j
-@Component
+//@Component
 public class Aop implements InvocationHandler {
 
     private Object target;

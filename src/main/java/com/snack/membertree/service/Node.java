@@ -1,4 +1,4 @@
-package com.snack.membertree;
+package com.snack.membertree.service;
 
 import lombok.Data;
 

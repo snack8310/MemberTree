@@ -1,28 +1,25 @@
-package com.snack.membertree;
+package com.snack.membertree.service;
 
-import lombok.extern.slf4j.Slf4j;
+import com.snack.membertree.service.dao.NodeDB;
+import org.springframework.stereotype.Component;
 
 import java.util.LinkedList;
 import java.util.List;
 
-@Slf4j
+@Component
 public class NodeServiceImpl implements NodeService {
-
-    private List<Node> nodes;
-    private final String START = "start";
-    private final String END = "end";
 
     @Override
     public Node add(Node parent, Node left, String title) {
 
         int nl = parent.getLeft();
-        int index = nodes.indexOf(parent) + 1;
+        int index = NodeDB.nodes.indexOf(parent) + 1;
         if (left != null) {
             nl = left.getRight();
-            index = nodes.indexOf(left) + 1;
+            index = NodeDB.nodes.indexOf(left) + 1;
         }
         Node newNode = new Node(title, nl + 1, nl + 2);
-        for (Node node : nodes) {
+        for (Node node : NodeDB.nodes) {
             if (node.getLeft() > nl) {
                 node.setLeft(node.getLeft() + 2);
             }
@@ -30,7 +27,7 @@ public class NodeServiceImpl implements NodeService {
                 node.setRight(node.getRight() + 2);
             }
         }
-        nodes.add(index, newNode);
+        NodeDB.nodes.add(index, newNode);
         return newNode;
     }
 
@@ -38,9 +35,9 @@ public class NodeServiceImpl implements NodeService {
     public void remove(Node removeNode) {
         int nl = removeNode.getLeft();
         int nr = removeNode.getRight();
-        for (Node node : nodes) {
+        for (Node node : NodeDB.nodes) {
             if (node.getLeft() > nl && node.getRight() < nr) {
-                nodes.remove(node);
+                NodeDB.nodes.remove(node);
                 continue;
             }
             if (node.getLeft() > nl) {
@@ -50,20 +47,20 @@ public class NodeServiceImpl implements NodeService {
                 node.setRight(node.getRight() - 2);
             }
         }
-        nodes.remove(removeNode);
+        NodeDB.nodes.remove(removeNode);
         return;
     }
 
     @Override
     public void createTree(String rootTitle) {
-        nodes = new LinkedList<>();
+        NodeDB.nodes = new LinkedList<>();
         Node node = new Node(rootTitle, 1, 2);
-        nodes.add(node);
+        NodeDB.nodes.add(node);
     }
 
     @Override
     public List<Node> getNodes() {
-        return this.nodes;
+        return NodeDB.nodes;
     }
 
     @Override
@@ -71,7 +68,7 @@ public class NodeServiceImpl implements NodeService {
         List<Node> children = new LinkedList<>();
         int nl = currentNode.getLeft();
         int nr = currentNode.getRight();
-        for (Node node : nodes) {
+        for (Node node : NodeDB.nodes) {
             if (node.getLeft() > nl && node.getRight() < nr) {
                 children.add(node);
             }
@@ -85,7 +82,7 @@ public class NodeServiceImpl implements NodeService {
         int nl = currentNode.getLeft();
         int nr = currentNode.getRight();
         Node leftChild = null;
-        for (Node node : nodes) {
+        for (Node node : NodeDB.nodes) {
             if (node.getLeft() <= nl || node.getRight() >= nr) {
                 continue;
             }
