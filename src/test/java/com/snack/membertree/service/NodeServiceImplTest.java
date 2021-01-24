@@ -75,6 +75,7 @@ public class NodeServiceImplTest {
         Node p = ns.getNodes().get(1);
         ns.remove(p);
         assertTrue(889 == ns.getNodes().size());
+        assertTrue(10 == ns.getOneLevelChildren(ns.getNodes().get(0)).size());
     }
 
     @Test
