@@ -1,12 +1,13 @@
 package com.snack.membertree.service;
 
 import com.snack.membertree.service.dao.NodeDB;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-@Component
+@Service
 public class NodeServiceImpl implements NodeService {
 
     @Override
@@ -35,19 +36,20 @@ public class NodeServiceImpl implements NodeService {
     public void remove(Node removeNode) {
         int nl = removeNode.getLeft();
         int nr = removeNode.getRight();
-        for (Node node : NodeDB.nodes) {
-            if (node.getLeft() > nl && node.getRight() < nr) {
-                NodeDB.nodes.remove(node);
-                continue;
+        int removeCount = (nr - nl + 1) / 2;
+        Iterator<Node> it = NodeDB.nodes.iterator();
+        while (it.hasNext()) {
+            Node node = it.next();
+            if (node.getLeft() >= nl && node.getRight() <= nr) {
+                it.remove();
             }
             if (node.getLeft() > nl) {
-                node.setLeft(node.getLeft() - 2);
+                node.setLeft(node.getLeft() - 2 * removeCount);
             }
             if (node.getRight() > nl) {
-                node.setRight(node.getRight() - 2);
+                node.setRight(node.getRight() - 2 * removeCount);
             }
         }
-        NodeDB.nodes.remove(removeNode);
         return;
     }
 

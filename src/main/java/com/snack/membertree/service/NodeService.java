@@ -1,11 +1,7 @@
 package com.snack.membertree.service;
 
-import com.snack.membertree.aop.LogHandle;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
 
-@Service
 public interface NodeService {
     Node add(Node parent, Node left, String title);
 
